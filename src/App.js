@@ -1,9 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { CallFetch } from "./CallFetch";
+import { CallArtist } from "./CallArtist";
 
 function App() {
-  return (
+  const [favouriteArtist, setFavouriteArtist] = useState("");
+  const [artist, setArtist] = useState("");
+
+  useEffect(() => {
+    //call Spotify API
+    CallFetch().then((data) => setFavouriteArtist(data.items[0].name));
+  });
+
+  useEffect(() => {
+    //call Spotify API
+    const artist = CallArtist();
+    setArtist(artist.name);
+  }, [setArtist]);
+
+  const view = (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,9 +34,12 @@ function App() {
         >
           Learn React
         </a>
+        <p>{favouriteArtist}</p>
+        <p>Favourite Artist without fetch {artist}</p>
       </header>
     </div>
   );
+  return view;
 }
 
 export default App;
