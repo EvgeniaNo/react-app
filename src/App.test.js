@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 jest.mock("./CallArtist.js", () => ({
@@ -15,8 +15,12 @@ test("renders learn react link", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test("renders favourite artist without fetch", () => {
+test("renders favourite artist by clicking the button", () => {
   const { getByText } = render(<App />);
+  const button = getByText("load");
+
+  fireEvent.click(button);
+
   const artistElement = getByText(/madonna/i);
   expect(artistElement).toBeInTheDocument();
 });

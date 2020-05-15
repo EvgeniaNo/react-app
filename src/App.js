@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { CallFetch } from "./CallFetch";
 import { CallArtist } from "./CallArtist";
@@ -13,30 +12,32 @@ function App() {
     CallFetch().then((data) => setFavouriteArtist(data.items[0].name));
   });
 
-  useEffect(() => {
-    //call Spotify API
+  function onClickHandler() {
     const artist = CallArtist();
     setArtist(artist.name);
-  }, [setArtist]);
+  }
 
   const view = (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+      <div className="form">
+        <button
+          type="submit"
+          className="btn btn-primary mb-2"
+          onClick={onClickHandler}
         >
-          Learn React
-        </a>
-        <p>{favouriteArtist}</p>
-        <p>Favourite Artist without fetch {artist}</p>
-      </header>
+          load
+        </button>
+        <span style={{ display: "block" }}>{artist}</span>
+      </div>
+      <p>{favouriteArtist}</p>
     </div>
   );
   return view;
