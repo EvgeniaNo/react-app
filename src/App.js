@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
-import { CallFetch } from "./CallFetch";
+
 import { CallArtist } from "./CallArtist";
+import { CallFetch } from "./CallFetch";
+import NavigationBar from "./NavigationBar";
+
+import "./App.css";
 
 function App() {
-  const [favouriteArtist, setFavouriteArtist] = useState("");
+  const [favouriteQuote, setFavouriteQuote] = useState("");
   const [artist, setArtist] = useState("");
 
   useEffect(() => {
-    //call Spotify API
-    CallFetch().then((data) => setFavouriteArtist(data.items[0].name));
+    //call Sample API
+    CallFetch().then((data) => setFavouriteQuote(data));
   });
 
   function onClickHandler() {
@@ -17,30 +20,32 @@ function App() {
     setArtist(artist.name);
   }
 
-  const view = (
-    <div className="App">
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-      <div className="form">
-        <button
-          type="submit"
-          className="btn btn-primary mb-2"
-          onClick={onClickHandler}
+  return (
+    <>
+      <NavigationBar></NavigationBar>
+      <div className="App">
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          load
-        </button>
-        <span style={{ display: "block" }}>{artist}</span>
+          Learn React
+        </a>
+        <div className="form">
+          <button
+            type="submit"
+            className="btn btn-primary mb-2"
+            onClick={onClickHandler}
+          >
+            load
+          </button>
+          <span style={{ display: "block" }}>{artist}</span>
+        </div>
+        <p>{favouriteQuote}</p>
       </div>
-      <p>{favouriteArtist}</p>
-    </div>
+    </>
   );
-  return view;
 }
 
 export default App;
