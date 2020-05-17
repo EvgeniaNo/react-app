@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { CallArtist } from "./CallArtist";
 import { CallFetch } from "./CallFetch";
+import Footer from "./Footer";
 import NavigationBar from "./NavigationBar";
-
-import "./App.css";
 
 function App() {
   const [favouriteQuote, setFavouriteQuote] = useState("");
@@ -23,13 +22,11 @@ function App() {
   return (
     <>
       <NavigationBar></NavigationBar>
-      <div className="App">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <div
+        className="d-flex flex-column align-items-center justify-content-center"
+        style={{ height: "200px" }}
+      >
+        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
         <div className="form">
@@ -42,8 +39,9 @@ function App() {
           </button>
           <span style={{ display: "block" }}>{artist}</span>
         </div>
-        <p>{favouriteQuote}</p>
+        <div>{favouriteQuote}</div>
       </div>
+      <Footer></Footer>
     </>
   );
 }
