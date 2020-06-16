@@ -10,8 +10,8 @@ function EditableTable(props) {
   const [table, setTable] = useState([1, 2, 3, 4]);
   return (
     <div>
-      <div>[{table.join(", ")}]</div>
-      <Button color="primary" onClick={onClickHandler}>
+      <div data-testid="table">[{table.join(", ")}]</div>
+      <Button color="primary" onClick={onClickHandler} data-testid="button">
         Delete a number
       </Button>
     </div>
