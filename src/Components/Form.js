@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import { CallArtist } from "../CallArtist";
 import { CallFetch } from "../CallFetch";
+import EditableTable from "./EditableTable";
 
 export default function Form() {
   const [favouriteQuote, setFavouriteQuote] = useState("");
@@ -35,6 +37,7 @@ export default function Form() {
           <span style={{ display: "block" }}>{artist}</span>
         </div>
         <div>{favouriteQuote}</div>
+        <EditableTable />
       </div>
     </>
   );
